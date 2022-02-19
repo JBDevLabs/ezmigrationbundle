@@ -34,7 +34,7 @@ class MigrateV1ToV2 implements MigrationInterface
         $this->legacyMigrationsDir = $this->container->get('ez_migration_bundle.helper.config.resolver')->getParameter('kaliop_bundle_migration.version_directory');
 
         $migrationStorageService = $this->container->get('ez_migration_bundle.storage_handler');
-        $this->connection = $this->container->get('ezpublish.api.storage_engine.legacy.connection');
+        $this->connection = $this->container->get('ibexa.api.storage_engine.legacy.connection');
 
         $this->activeBundles = array();
         foreach ($this->container->get('kernel')->getBundles() as $bundle)

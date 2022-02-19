@@ -2,7 +2,7 @@
     "name": "ezsystems/ezmigrationbundle",
     "type": "symfony-bundle",
     "description": "Kaliop eZ-Migration Bundle",
-    "keywords": ["migrations", "database", "ezpublish"],
+    "keywords": ["migrations", "database", "ezpublish", "ezplatform", "ibexa"],
     "license": "GPL-2.0",
     "authors": [
         {
