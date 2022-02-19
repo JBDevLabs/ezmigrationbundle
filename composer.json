@@ -24,12 +24,12 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
-        "php": "^7.3",
+        "php": ">=7.3",
         "ext-pdo": "*",
-        "ezsystems/ezplatform-kernel": "^2.0@dev",
-        "ezsystems/doctrine-dbal-schema": "^2.0@dev",
+        "ibexa/core": "^4.0",
+        "ibexa/doctrine-schema": "^4.0",
         "mtdowling/jmespath.php": "2.*",
-        "nikic/php-parser": "^4.2.2",
+        "nikic/php-parser": "^4.13.2",
         "symfony/process": "*",
         "symfony/swiftmailer-bundle": "*",
         "symfony/validator": "*",
@@ -45,11 +45,6 @@
     },
     "autoload": {
         "psr-4": { "Kaliop\\eZMigrationBundle\\": "" }
-    },
-    "extra": {
-        "branch-alias": {
-            "dev-master": "2.0.x-dev"
-        }
     },
     "repositories": [
         {
