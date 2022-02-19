@@ -338,14 +338,14 @@ class MigrationService implements ContextProviderInterface
             } catch (MigrationAbortedException $e) {
                 // allow a migration step (or events) to abort the migration via a specific exception
 
-                $this->dispatcher->dispatch($this->eventPrefix . $this->eventEntity . '_aborted', new MigrationAbortedEvent($step, $e));
+                $this->dispatcher->dispatch(new MigrationAbortedEvent($step, $e), $this->eventPrefix . $this->eventEntity . '_aborted');
 
                 $finalStatus = $e->getCode();
                 $finalMessage = "Abort in execution of step $i: " . $e->getMessage();
             } catch (MigrationSuspendedException $e) {
                 // allow a migration step (or events) to suspend the migration via a specific exception
 
-                $this->dispatcher->dispatch($this->eventPrefix . $this->eventEntity . '_suspended', new MigrationSuspendedEvent($step, $e));
+                $this->dispatcher->dispatch(new MigrationSuspendedEvent($step, $e), $this->eventPrefix . $this->eventEntity . '_suspended');
 
                 // let the context handler store our context, along with context data from any other (tagged) service which has some
                 $this->contextHandler->storeCurrentContext($migration->name);

@@ -41,7 +41,7 @@ class GenerateCommand extends AbstractCommand
             ->addOption('dbserver', null, InputOption::VALUE_REQUIRED, 'The type of the database server the sql migration is for, when type=db (mysql, postgresql, ...)', 'mysql')
             ->addOption('admin-login', 'a', InputOption::VALUE_REQUIRED, "Login of admin account used whenever elevated privileges are needed (user id 14 used by default)")
             ->addOption('list-types', null, InputOption::VALUE_NONE, 'Use this option to list all available migration types and their match conditions')
-            ->addArgument('bundle', InputArgument::OPTIONAL, 'The bundle to generate the migration definition file in. eg.: AcmeMigrationBundle')
+            ->addArgument('directory', InputArgument::REQUIRED, 'The directory to generate the migration definition file in. eg.: migrations')
             ->addArgument('name', InputArgument::OPTIONAL, 'The migration name (will be prefixed with current date)', null)
             ->setHelp(<<<EOT
 The <info>kaliop:migration:generate</info> command generates a skeleton migration definition file:
@@ -99,10 +99,10 @@ EOT
             return 0;
         }
 
-        $bundleName = $input->getArgument('bundle');
-        if ($bundleName === null) {
+        $directoryName = $input->getArgument('directory');
+        if ($directoryName === null) {
             // throw same exception as SF would when declaring 'bundle' as mandatory arg
-            throw new \RuntimeException('Not enough arguments (missing: "bundle").');
+            throw new \RuntimeException('Not enough arguments (missing: "directory").');
         }
         $name = $input->getArgument('name');
         $fileType = $input->getOption('format');
@@ -113,8 +113,8 @@ EOT
         $mode = $input->getOption('mode');
         $dbServer = $input->getOption('dbserver');
 
-        if ($bundleName == $this->thisBundle) {
-            throw new \InvalidArgumentException("It is not allowed to create migrations in bundle '$bundleName'");
+        if (is_dir($directoryName) === false && is_dir($directoryName = $this->container->getParameter('kernel.project_dir') . DIRECTORY_SEPARATOR . $directoryName)) {
+            throw new \InvalidArgumentException("Directory not found '$directoryName'");
         }
 
         // be kind to lazy users
@@ -136,7 +136,7 @@ EOT
             throw new \InvalidArgumentException('Unsupported migration mode ' . $mode);
         }
 
-        $migrationDirectory = $this->getMigrationDirectory($bundleName);
+        $migrationDirectory = $directoryName;
 
         if (!is_dir($migrationDirectory)) {
             $output->writeln(sprintf(
@@ -251,11 +251,11 @@ EOT
                     throw new \Exception("The combination of migration type '$migrationType' is not supported with format '$fileType'");
                 }
 
-                $code = $this->getContainer()->get('twig')->render($this->thisBundle . ':MigrationTemplate:' . $template, $parameters);
+                $code = $this->getContainer()->get('twig')->render('@'.$this->thisBundle . '/MigrationTemplate/' . $template, $parameters);
 
                 // allow event handlers to replace data
                 $event = new MigrationGeneratedEvent($migrationType, $migrationMode, $fileType, $code, $filePath);
-                $this->getContainer()->get('event_dispatcher')->dispatch($this->eventName, $event);
+                $this->getContainer()->get('event_dispatcher')->dispatch($event, $this->eventName);
                 $code = $event->getData();
                 $filePath = $event->getFile();
 
