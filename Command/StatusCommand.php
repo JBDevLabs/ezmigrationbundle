@@ -213,5 +213,6 @@ EOT
             ->setHeaders($headers)
             ->setRows($data);
         $table->render();
+        return 0;
     }
 }
