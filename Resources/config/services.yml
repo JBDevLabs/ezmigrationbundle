@@ -576,7 +576,7 @@ services:
     ez_migration_bundle.tag_matcher:
         class: '%ez_migration_bundle.tag_matcher.class%'
         arguments:
-            - '@ibexa.translation_helper'
+            - '@Ibexa\Core\Helper\TranslationHelper'
             - '@?ibexa.api.service.tags'
 
     ez_migration_bundle.trash_matcher:
@@ -792,7 +792,7 @@ services:
     ez_migration_bundle.helper.limitation_converter:
         class: '%ez_migration_bundle.helper.limitation_converter.class%'
         arguments:
-            - '%ibexa.siteaccess.list%'
+            - '%ibexa.site_access.list%'
             - '@ez_migration_bundle.location_matcher'
             - '@ez_migration_bundle.section_matcher'
             - '@ez_migration_bundle.content_type_matcher'
