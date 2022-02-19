@@ -2,7 +2,7 @@
 
 namespace Kaliop\eZMigrationBundle\Core\Executor;
 
-use eZ\Publish\API\Repository\Values\ObjectState\ObjectState;
+use Ibexa\Contracts\Core\Repository\Values\ObjectState\ObjectState;
 use Kaliop\eZMigrationBundle\Core\Matcher\ObjectStateGroupMatcher;
 use Kaliop\eZMigrationBundle\Core\Matcher\ObjectStateMatcher;
 use Kaliop\eZMigrationBundle\API\Collection\ObjectStateCollection;
@@ -212,7 +212,7 @@ class ObjectStateManager extends RepositoryExecutor implements MigrationGenerato
         $objectStateCollection = $this->objectStateMatcher->match($matchCondition);
         $data = array();
 
-        /** @var \eZ\Publish\API\Repository\Values\ObjectState\ObjectState $objectState */
+        /** @var \Ibexa\Contracts\Core\Repository\Values\ObjectState\ObjectState $objectState */
         foreach ($objectStateCollection as $objectState) {
 
             $groupData = array(

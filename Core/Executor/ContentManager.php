@@ -2,13 +2,13 @@
 
 namespace Kaliop\eZMigrationBundle\Core\Executor;
 
-use eZ\Publish\API\Repository\Values\ContentType\ContentType;
-use eZ\Publish\API\Repository\Values\ContentType\FieldDefinition;
-use eZ\Publish\API\Repository\Values\Content\Location;
-use eZ\Publish\API\Repository\Values\Content\Content;
-use eZ\Publish\API\Repository\Values\Content\ContentCreateStruct;
-use eZ\Publish\API\Repository\Values\Content\ContentUpdateStruct;
-use eZ\Publish\Core\Base\Exceptions\NotFoundException;
+use Ibexa\Contracts\Core\Repository\Values\ContentType\ContentType;
+use Ibexa\Contracts\Core\Repository\Values\ContentType\FieldDefinition;
+use Ibexa\Contracts\Core\Repository\Values\Content\Location;
+use Ibexa\Contracts\Core\Repository\Values\Content\Content;
+use Ibexa\Contracts\Core\Repository\Values\Content\ContentCreateStruct;
+use Ibexa\Contracts\Core\Repository\Values\Content\ContentUpdateStruct;
+use Ibexa\Core\Base\Exceptions\NotFoundException;
 use Kaliop\eZMigrationBundle\API\Collection\ContentCollection;
 use Kaliop\eZMigrationBundle\API\MigrationGeneratorInterface;
 use Kaliop\eZMigrationBundle\API\EnumerableMatcherInterface;
@@ -500,7 +500,7 @@ class ContentManager extends RepositoryExecutor implements MigrationGeneratorInt
         $contentCollection = $this->contentMatcher->match($matchCondition);
         $data = array();
 
-        /** @var \eZ\Publish\API\Repository\Values\Content\Content $content */
+        /** @var \Ibexa\Contracts\Core\Repository\Values\Content\Content $content */
         foreach ($contentCollection as $content) {
 
             $location = $this->repository->getLocationService()->loadLocation($content->contentInfo->mainLocationId);
@@ -735,7 +735,7 @@ class ContentManager extends RepositoryExecutor implements MigrationGeneratorInt
     {
         foreach ($stateKeys as $stateKey) {
             $stateKey = $this->referenceResolver->resolveReference($stateKey);
-            /** @var \eZ\Publish\API\Repository\Values\ObjectState\ObjectState $state */
+            /** @var \Ibexa\Contracts\Core\Repository\Values\ObjectState\ObjectState $state */
             $state = $this->objectStateMatcher->matchOneByKey($stateKey);
 
             $stateService = $this->repository->getObjectStateService();
@@ -831,7 +831,7 @@ class ContentManager extends RepositoryExecutor implements MigrationGeneratorInt
     /**
      * Load user using either login, email, id - resolving eventual references
      * @param int|string $userKey
-     * @return \eZ\Publish\API\Repository\Values\User\User
+     * @return \Ibexa\Contracts\Core\Repository\Values\User\User
      */
     protected function getUser($userKey)
     {

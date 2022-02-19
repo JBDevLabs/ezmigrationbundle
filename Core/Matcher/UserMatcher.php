@@ -2,7 +2,7 @@
 
 namespace Kaliop\eZMigrationBundle\Core\Matcher;
 
-use eZ\Publish\API\Repository\Values\User\User;
+use Ibexa\Contracts\Core\Repository\Values\User\User;
 use Kaliop\eZMigrationBundle\API\Collection\UserCollection;
 use Kaliop\eZMigrationBundle\API\KeyMatcherInterface;
 use Kaliop\eZMigrationBundle\API\Exception\InvalidMatchConditionsException;

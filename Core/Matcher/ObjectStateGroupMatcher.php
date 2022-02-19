@@ -3,9 +3,9 @@
 namespace Kaliop\eZMigrationBundle\Core\Matcher;
 
 use Kaliop\eZMigrationBundle\API\Collection\ObjectStateGroupCollection;
-use \eZ\Publish\API\Repository\Values\ObjectState\ObjectStateGroup;
+use \Ibexa\Contracts\Core\Repository\Values\ObjectState\ObjectStateGroup;
 use Kaliop\eZMigrationBundle\API\KeyMatcherInterface;
-use eZ\Publish\Core\Base\Exceptions\NotFoundException;
+use Ibexa\Core\Base\Exceptions\NotFoundException;
 use Kaliop\eZMigrationBundle\API\Exception\InvalidMatchConditionsException;
 
 class ObjectStateGroupMatcher extends RepositoryMatcher implements KeyMatcherInterface

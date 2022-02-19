@@ -139,8 +139,8 @@ services:
         tags:
             - { name: ez_migration_bundle.context_provider, label: migration_service }
         calls:
-            - ['setPermissionResolver', ['@eZ\Publish\API\Repository\PermissionResolver']]
-            - ['setUserService', ['@eZ\Publish\API\Repository\UserService']]
+            - ['setPermissionResolver', ['@Ibexa\Contracts\Core\Repository\PermissionResolver']]
+            - ['setUserService', ['@Ibexa\Contracts\Core\Repository\UserService']]
 
     ### loaders
 
@@ -333,8 +333,8 @@ services:
             - ['setConfigResolver', ['@ibexa.config.resolver']]
             # SF bug? this method is not called for child srevices as it belongs to a trait instead of teh base class...
             - ['setReferenceMatcher', ['@ez_migration_bundle.reference_matcher']]
-            - ['setPermissionResolver', ['@eZ\Publish\API\Repository\PermissionResolver']]
-            - ['setUserService', ['@eZ\Publish\API\Repository\UserService']]
+            - ['setPermissionResolver', ['@Ibexa\Contracts\Core\Repository\PermissionResolver']]
+            - ['setUserService', ['@Ibexa\Contracts\Core\Repository\UserService']]
 
     ez_migration_bundle.executor.content_manager:
         parent: ez_migration_bundle.executor.repository

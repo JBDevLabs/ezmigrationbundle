@@ -2,7 +2,7 @@
 
 namespace Kaliop\eZMigrationBundle\Core\Executor;
 
-use eZ\Publish\API\Repository\Values\Content\Section;
+use Ibexa\Contracts\Core\Repository\Values\Content\Section;
 use Kaliop\eZMigrationBundle\API\Collection\SectionCollection;
 use Kaliop\eZMigrationBundle\API\MigrationGeneratorInterface;
 use Kaliop\eZMigrationBundle\API\EnumerableMatcherInterface;
@@ -176,7 +176,7 @@ class SectionManager extends RepositoryExecutor implements MigrationGeneratorInt
         $sectionCollection = $this->sectionMatcher->match($matchCondition);
         $data = array();
 
-        /** @var \eZ\Publish\API\Repository\Values\Content\Section $section */
+        /** @var \Ibexa\Contracts\Core\Repository\Values\Content\Section $section */
         foreach ($sectionCollection as $section) {
 
             $sectionData = array(

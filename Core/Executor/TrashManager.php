@@ -102,7 +102,7 @@ class TrashManager extends RepositoryExecutor
     }
 
     /**
-     * @param \eZ\Publish\API\Repository\Values\Content\TrashItem|\eZ\Publish\API\Repository\Values\Content\Location $item
+     * @param \Ibexa\Contracts\Core\Repository\Values\Content\TrashItem|\Ibexa\Contracts\Core\Repository\Values\Content\Location $item
      * @param array $references the definitions of the references to set
      * @throws \InvalidArgumentException When trying to assign a reference to an unsupported attribute
      * @return array key: the reference names, values: the reference values

@@ -2,16 +2,16 @@
 
 namespace Kaliop\eZMigrationBundle\Core\Executor;
 
-use eZ\Publish\API\Repository\Values\User\Role;
-use eZ\Publish\API\Repository\RoleService;
-use eZ\Publish\API\Repository\UserService;
-use eZ\Publish\API\Repository\Values\User\RoleAssignment;
+use Ibexa\Contracts\Core\Repository\Values\User\Role;
+use Ibexa\Contracts\Core\Repository\RoleService;
+use Ibexa\Contracts\Core\Repository\UserService;
+use Ibexa\Contracts\Core\Repository\Values\User\RoleAssignment;
 use Kaliop\eZMigrationBundle\API\Collection\RoleCollection;
 use Kaliop\eZMigrationBundle\API\MigrationGeneratorInterface;
 use Kaliop\eZMigrationBundle\API\EnumerableMatcherInterface;
 use Kaliop\eZMigrationBundle\Core\Helper\LimitationConverter;
 use Kaliop\eZMigrationBundle\Core\Matcher\RoleMatcher;
-use eZ\Publish\API\Repository\Values\User\Limitation;
+use Ibexa\Contracts\Core\Repository\Values\User\Limitation;
 
 /**
  * Handles role migrations.
@@ -89,7 +89,7 @@ class RoleManager extends RepositoryExecutor implements MigrationGeneratorInterf
         $roleService = $this->repository->getRoleService();
         $userService = $this->repository->getUserService();
 
-        /** @var \eZ\Publish\API\Repository\Values\User\Role $role */
+        /** @var \Ibexa\Contracts\Core\Repository\Values\User\Role $role */
         foreach ($roleCollection as $key => $role) {
             $roleDraft = $roleService->createRoleDraft($role);
 
@@ -219,7 +219,7 @@ class RoleManager extends RepositoryExecutor implements MigrationGeneratorInterf
         $roleCollection = $this->roleMatcher->match($matchCondition);
         $data = array();
 
-        /** @var \eZ\Publish\API\Repository\Values\User\Role $role */
+        /** @var \Ibexa\Contracts\Core\Repository\Values\User\Role $role */
         foreach ($roleCollection as $role) {
             $roleData = array(
                 'type' => reset($this->supportedStepTypes),
@@ -302,7 +302,7 @@ class RoleManager extends RepositoryExecutor implements MigrationGeneratorInterf
      * )
      * </pre>
      *
-     * @param \eZ\Publish\API\Repository\RoleService $roleService
+     * @param \Ibexa\Contracts\Core\Repository\RoleService $roleService
      * @param array $limitation
      * @return Limitation
      */
@@ -340,9 +340,9 @@ class RoleManager extends RepositoryExecutor implements MigrationGeneratorInterf
      * )
      * </pre>
      *
-     * @param \eZ\Publish\API\Repository\Values\User\Role $role
-     * @param \eZ\Publish\API\Repository\RoleService $roleService
-     * @param \eZ\Publish\API\Repository\UserService $userService
+     * @param \Ibexa\Contracts\Core\Repository\Values\User\Role $role
+     * @param \Ibexa\Contracts\Core\Repository\RoleService $roleService
+     * @param \Ibexa\Contracts\Core\Repository\UserService $userService
      * @param array $assignments
      */
     protected function assignRole(Role $role, RoleService $roleService, UserService $userService, array $assignments)
@@ -423,8 +423,8 @@ class RoleManager extends RepositoryExecutor implements MigrationGeneratorInterf
     /**
      * Add new policies to the $role Role.
      *
-     * @param \eZ\Publish\API\Repository\Values\User\Role $role
-     * @param \eZ\Publish\API\Repository\RoleService $roleService
+     * @param \Ibexa\Contracts\Core\Repository\Values\User\Role $role
+     * @param \Ibexa\Contracts\Core\Repository\RoleService $roleService
      * @param array $policy
      */
     protected function addPolicy(Role $role, RoleService $roleService, array $policy)

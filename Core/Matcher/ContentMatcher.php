@@ -2,8 +2,8 @@
 
 namespace Kaliop\eZMigrationBundle\Core\Matcher;
 
-use eZ\Publish\API\Repository\Values\Content\Content;
-use eZ\Publish\API\Repository\Values\Content\Query;
+use Ibexa\Contracts\Core\Repository\Values\Content\Content;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query;
 use Kaliop\eZMigrationBundle\API\Collection\ContentCollection;
 use Kaliop\eZMigrationBundle\API\Exception\InvalidMatchConditionsException;
 use Kaliop\eZMigrationBundle\API\Exception\InvalidSortConditionsException;
@@ -133,7 +133,7 @@ class ContentMatcher extends QueryBasedMatcher implements SortingMatcherInterfac
                             case self::MATCH_CONTENT_TYPE_IDENTIFIER:
                                 // sort objects by depth, lower to higher, so that deleting them has less chances of failure
                                 // NB: we only do this in eZP versions that allow depth sorting on content queries
-                                if (class_exists('eZ\Publish\API\Repository\Values\Content\Query\SortClause\LocationDepth')) {
+                                if (class_exists('Ibexa\Contracts\Core\Repository\Values\Content\Query\SortClause\LocationDepth')) {
                                     $query->sortClauses = array(new Query\SortClause\LocationDepth(Query::SORT_DESC));
                                 }
                         }
@@ -291,7 +291,7 @@ class ContentMatcher extends QueryBasedMatcher implements SortingMatcherInterfac
         $query->filter = new Query\Criterion\ContentTypeIdentifier($contentTypeIdentifiers);
         // sort objects by depth, lower to higher, so that deleting them has less chances of failure
         // NB: we only do this in eZP versions that allow depth sorting on content queries
-        if (class_exists('eZ\Publish\API\Repository\Values\Content\Query\SortClause\LocationDepth')) {
+        if (class_exists('Ibexa\Contracts\Core\Repository\Values\Content\Query\SortClause\LocationDepth')) {
             $query->sortClauses = array(new Query\SortClause\LocationDepth(Query::SORT_DESC));
         }
 
@@ -319,7 +319,7 @@ class ContentMatcher extends QueryBasedMatcher implements SortingMatcherInterfac
         $query->filter = new Query\Criterion\ContentTypeId($contentTypeIds);
         // sort objects by depth, lower to higher, so that deleting them has less chances of failure
         // NB: we only do this in eZP versions that allow depth sorting on content queries
-        if (class_exists('eZ\Publish\API\Repository\Values\Content\Query\SortClause\LocationDepth')) {
+        if (class_exists('Ibexa\Contracts\Core\Repository\Values\Content\Query\SortClause\LocationDepth')) {
             $query->sortClauses = array(new Query\SortClause\LocationDepth(Query::SORT_DESC));
         }
         $results = $this->repository->getSearchService()->findContent($query);

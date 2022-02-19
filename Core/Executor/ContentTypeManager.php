@@ -2,10 +2,10 @@
 
 namespace Kaliop\eZMigrationBundle\Core\Executor;
 
-use eZ\Publish\API\Repository\ContentTypeService;
-use eZ\Publish\API\Repository\Values\ContentType\ContentType;
-use eZ\Publish\API\Repository\Values\ContentType\FieldDefinition;
-use eZ\Publish\API\Repository\Exceptions\NotFoundException;
+use Ibexa\Contracts\Core\Repository\ContentTypeService;
+use Ibexa\Contracts\Core\Repository\Values\ContentType\ContentType;
+use Ibexa\Contracts\Core\Repository\Values\ContentType\FieldDefinition;
+use Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException;
 use Kaliop\eZMigrationBundle\API\Collection\ContentTypeCollection;
 use Kaliop\eZMigrationBundle\API\MigrationGeneratorInterface;
 use Kaliop\eZMigrationBundle\API\EnumerableMatcherInterface;
@@ -455,7 +455,7 @@ class ContentTypeManager extends RepositoryExecutor implements MigrationGenerato
         $contentTypeCollection = $this->contentTypeMatcher->match($matchCondition);
         $data = array();
 
-        /** @var \eZ\Publish\API\Repository\Values\ContentType\ContentType $contentType */
+        /** @var \Ibexa\Contracts\Core\Repository\Values\ContentType\ContentType $contentType */
         foreach ($contentTypeCollection as $contentType) {
 
             $contentTypeData = array(
@@ -588,7 +588,7 @@ class ContentTypeManager extends RepositoryExecutor implements MigrationGenerato
      * @param array $attribute
      * @param string $contentTypeIdentifier
      * @param string $lang
-     * @return \eZ\Publish\API\Repository\Values\ContentType\FieldDefinitionCreateStruct
+     * @return \Ibexa\Contracts\Core\Repository\Values\ContentType\FieldDefinitionCreateStruct
      * @throws \Exception
      */
     protected function createFieldDefinition(ContentTypeService $contentTypeService, array $attribute, $contentTypeIdentifier, $lang)
@@ -655,7 +655,7 @@ class ContentTypeManager extends RepositoryExecutor implements MigrationGenerato
      * @param string $contentTypeIdentifier
      * @param string $lang
      * @param FieldDefinition $existingFieldDefinition
-     * @return \eZ\Publish\API\Repository\Values\ContentType\FieldDefinitionUpdateStruct
+     * @return \Ibexa\Contracts\Core\Repository\Values\ContentType\FieldDefinitionUpdateStruct
      * @throws \Exception
      */
     protected function updateFieldDefinition(ContentTypeService $contentTypeService, array $attribute, $fieldTypeIdentifier, $contentTypeIdentifier, $lang, FieldDefinition $existingFieldDefinition)
@@ -742,7 +742,7 @@ class ContentTypeManager extends RepositoryExecutor implements MigrationGenerato
      *
      * @param ContentType $contentType
      * @param string $fieldIdentifier
-     * @return \eZ\Publish\API\Repository\Values\ContentType\FieldDefinition|null
+     * @return \Ibexa\Contracts\Core\Repository\Values\ContentType\FieldDefinition|null
      */
     protected function contentTypeHasFieldDefinition(ContentType $contentType, $fieldIdentifier)
     {

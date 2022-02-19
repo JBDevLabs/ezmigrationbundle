@@ -2,10 +2,10 @@
 
 namespace Kaliop\eZMigrationBundle\Core\Matcher;
 
-use eZ\Publish\API\Repository\Values\ObjectState\ObjectState;
+use Ibexa\Contracts\Core\Repository\Values\ObjectState\ObjectState;
 use Kaliop\eZMigrationBundle\API\Collection\ObjectStateCollection;
 use Kaliop\eZMigrationBundle\API\KeyMatcherInterface;
-use eZ\Publish\Core\Base\Exceptions\NotFoundException;
+use Ibexa\Core\Base\Exceptions\NotFoundException;
 use Kaliop\eZMigrationBundle\API\Exception\InvalidMatchConditionsException;
 
 class ObjectStateMatcher extends RepositoryMatcher implements KeyMatcherInterface
